@@ -4,6 +4,7 @@ go 1.24.13
 
 require (
 	github.com/bakdaaswandi5818/greeting-lib v0.0.0
+	github.com/bakdaaswandi5818/logger-lib v0.0.0
 	github.com/labstack/echo/v4 v4.15.0
 	github.com/stretchr/testify v1.11.1
 )
@@ -25,3 +26,5 @@ require (
 )
 
 replace github.com/bakdaaswandi5818/greeting-lib => ./libs/greeting-lib
+
+replace github.com/bakdaaswandi5818/logger-lib => ./libs/logger-lib

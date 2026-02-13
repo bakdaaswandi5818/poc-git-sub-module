@@ -9,7 +9,7 @@ http://localhost:8080
 
 ### 1. Welcome / Root Endpoint
 
-Get welcome message and submodule information.
+Get welcome message and information from both submodules.
 
 **Endpoint:** `GET /`
 
@@ -22,7 +22,8 @@ curl http://localhost:8080/
 ```json
 {
   "message": "Git Submodule POC with Golang Echo Framework",
-  "info": "Greeting Library v1.0.0 - Loaded from Git Submodule"
+  "greeting_info": "Greeting Library v1.0.0 - Loaded from Git Submodule",
+  "logger_info": "Logger Library v1.0.0 - Loaded from Git Submodule"
 }
 ```
 
@@ -98,7 +99,7 @@ The greeting prefix varies by time:
 
 ### 4. Health Check Endpoint
 
-Check the health status of the application and verify submodule is loaded.
+Check the health status of the application and verify both submodules are loaded.
 
 **Endpoint:** `GET /health`
 
@@ -111,7 +112,8 @@ curl http://localhost:8080/health
 ```json
 {
   "status": "healthy",
-  "submodule": "greeting-lib loaded successfully"
+  "greeting_submodule": "greeting-lib loaded successfully",
+  "logger_submodule": "logger-lib loaded successfully"
 }
 ```
 

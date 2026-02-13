@@ -87,7 +87,19 @@ In-depth guide to Git submodules:
 
 📖 **6.8KB** | ⏱️ **12 min read**
 
-### 7. [EXTENDING.md](EXTENDING.md)
+### 7. [SUBMODULE_PULL_GUIDE.md](SUBMODULE_PULL_GUIDE.md) ⭐ **NEW**
+Step-by-step guide for pulling and updating submodules:
+- Initial clone with submodules
+- Checking submodule status
+- Pulling updates from submodules
+- Making changes in submodules
+- Common scenarios and workflows
+- Troubleshooting submodule issues
+- Best practices and quick reference
+
+📖 **8.6KB** | ⏱️ **12 min read**
+
+### 8. [EXTENDING.md](EXTENDING.md)
 Examples for extending the POC:
 - Adding new endpoints
 - Database integration
@@ -100,7 +112,7 @@ Examples for extending the POC:
 
 📖 **8.3KB** | ⏱️ **15 min read**
 
-### 8. [TROUBLESHOOTING.md](TROUBLESHOOTING.md)
+### 9. [TROUBLESHOOTING.md](TROUBLESHOOTING.md)
 Comprehensive troubleshooting guide:
 - Git submodule issues
 - Build problems

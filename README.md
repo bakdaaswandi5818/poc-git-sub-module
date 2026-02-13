@@ -5,9 +5,9 @@ This project demonstrates how to use Git submodules in a Go application built wi
 ## Overview
 
 This proof of concept shows:
-- How to structure a Go project with Git submodules
-- Using a separate Go module as a Git submodule
-- Building a REST API with Echo framework that uses the submodule library
+- How to structure a Go project with **multiple Git submodules**
+- Using separate Go modules as Git submodules
+- Building a REST API with Echo framework that uses submodule libraries
 - Best practices for managing dependencies with Go modules and Git submodules
 
 ## Project Structure
@@ -15,12 +15,16 @@ This proof of concept shows:
 ```
 .
 ├── main.go                  # Main Echo application
-├── go.mod                   # Go module definition with submodule replacement
+├── go.mod                   # Go module definition with submodule replacements
 ├── go.sum                   # Go dependencies checksum
 ├── .gitmodules              # Git submodules configuration
 ├── libs/
-│   └── greeting-lib/        # Git submodule: Greeting library
-│       ├── greeting.go      # Library implementation
+│   ├── greeting-lib/        # Git submodule: Greeting library
+│   │   ├── greeting.go      # Library implementation
+│   │   ├── go.mod           # Library module definition
+│   │   └── README.md        # Library documentation
+│   └── logger-lib/          # Git submodule: Logger library
+│       ├── logger.go        # Logger implementation
 │       ├── go.mod           # Library module definition
 │       └── README.md        # Library documentation
 └── README.md                # This file
@@ -28,20 +32,31 @@ This proof of concept shows:
 
 ## Features
 
-### Greeting Library (Submodule)
-The `greeting-lib` is a standalone Go module that provides:
+### Submodule Libraries
+
+This project demonstrates **two Git submodules**:
+
+#### 1. Greeting Library (`libs/greeting-lib`)
+A standalone Go module that provides:
 - Basic greeting functionality
 - Time-based greetings (morning, afternoon, evening)
 - Customizable default name
 - Version information
 
+#### 2. Logger Library (`libs/logger-lib`)
+A standalone logging module that provides:
+- Structured logging with timestamps
+- Multiple log levels (Info, Warn, Error, Debug)
+- Customizable prefix for different components
+- Lightweight and simple to use
+
 ### Echo REST API
 The main application provides the following endpoints:
 
-- `GET /` - Welcome message with submodule info
+- `GET /` - Welcome message with both submodules' info
 - `GET /greet?name=John` - Get a personalized greeting
 - `GET /greet/time-based?name=John` - Get a time-based greeting
-- `GET /health` - Health check endpoint
+- `GET /health` - Health check endpoint showing both submodules loaded
 
 ## Setup and Installation
 
@@ -52,7 +67,7 @@ The main application provides the following endpoints:
 ### Clone with Submodules
 
 ```bash
-# Clone the repository with submodules
+# Clone the repository with submodules (RECOMMENDED)
 git clone --recurse-submodules https://github.com/bakdaaswandi5818/poc-git-sub-module.git
 
 # Or if you already cloned without submodules
@@ -60,6 +75,8 @@ git clone https://github.com/bakdaaswandi5818/poc-git-sub-module.git
 cd poc-git-sub-module
 git submodule update --init --recursive
 ```
+
+> **📘 For detailed instructions on pulling and updating submodules, see [SUBMODULE_PULL_GUIDE.md](SUBMODULE_PULL_GUIDE.md)**
 
 ### Install Dependencies
 
