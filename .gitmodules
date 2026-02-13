@@ -1,0 +1,12 @@
+[submodule "libs/greeting-lib"]
+	path = libs/greeting-lib
+	url = ./libs/greeting-lib
+[submodule "libs/logger-lib"]
+	path = libs/logger-lib
+	url = ./libs/logger-lib
+[submodule "frontend/components-lib"]
+	path = frontend/components-lib
+	url = ./frontend/components-lib
+[submodule "frontend/utils-lib"]
+	path = frontend/utils-lib
+	url = ./frontend/utils-lib
