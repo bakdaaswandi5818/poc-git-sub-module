@@ -5,7 +5,7 @@ import (
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
-	
+
 	// Import the greeting library from the submodule
 	greeting "github.com/bakdaaswandi5818/greeting-lib"
 )
@@ -46,7 +46,7 @@ func main() {
 
 	e.GET("/health", func(c echo.Context) error {
 		return c.JSON(http.StatusOK, map[string]string{
-			"status": "healthy",
+			"status":    "healthy",
 			"submodule": "greeting-lib loaded successfully",
 		})
 	})

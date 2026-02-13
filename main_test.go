@@ -8,7 +8,7 @@ import (
 
 	"github.com/labstack/echo/v4"
 	"github.com/stretchr/testify/assert"
-	
+
 	greeting "github.com/bakdaaswandi5818/greeting-lib"
 )
 
@@ -27,7 +27,7 @@ func TestRootEndpoint(t *testing.T) {
 
 	if assert.NoError(t, handler(c)) {
 		assert.Equal(t, http.StatusOK, rec.Code)
-		
+
 		var response map[string]string
 		err := json.Unmarshal(rec.Body.Bytes(), &response)
 		assert.NoError(t, err)
@@ -53,7 +53,7 @@ func TestGreetEndpoint(t *testing.T) {
 
 	if assert.NoError(t, handler(c)) {
 		assert.Equal(t, http.StatusOK, rec.Code)
-		
+
 		var response map[string]string
 		err := json.Unmarshal(rec.Body.Bytes(), &response)
 		assert.NoError(t, err)
@@ -78,7 +78,7 @@ func TestGreetEndpointWithoutName(t *testing.T) {
 
 	if assert.NoError(t, handler(c)) {
 		assert.Equal(t, http.StatusOK, rec.Code)
-		
+
 		var response map[string]string
 		err := json.Unmarshal(rec.Body.Bytes(), &response)
 		assert.NoError(t, err)
@@ -94,14 +94,14 @@ func TestHealthEndpoint(t *testing.T) {
 
 	handler := func(c echo.Context) error {
 		return c.JSON(http.StatusOK, map[string]string{
-			"status": "healthy",
+			"status":    "healthy",
 			"submodule": "greeting-lib loaded successfully",
 		})
 	}
 
 	if assert.NoError(t, handler(c)) {
 		assert.Equal(t, http.StatusOK, rec.Code)
-		
+
 		var response map[string]string
 		err := json.Unmarshal(rec.Body.Bytes(), &response)
 		assert.NoError(t, err)
