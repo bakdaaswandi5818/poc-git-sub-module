@@ -1,0 +1,3 @@
+[submodule "libs/greeting-lib"]
+	path = libs/greeting-lib
+	url = ./libs/greeting-lib
