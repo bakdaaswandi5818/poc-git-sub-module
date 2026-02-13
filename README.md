@@ -1,40 +1,54 @@
-# Git Submodule POC with Golang Echo Framework
+# Git Submodule POC - Full Stack with Golang Echo & React
 
-This project demonstrates how to use Git submodules in a Go application built with the Echo web framework.
+This project demonstrates how to use Git submodules in both backend (Go/Echo) and frontend (React) applications, showcasing a complete modular architecture.
 
 ## Overview
 
 This proof of concept shows:
-- How to structure a Go project with **multiple Git submodules**
-- Using separate Go modules as Git submodules
-- Building a REST API with Echo framework that uses submodule libraries
+- How to structure a **full-stack project** with **multiple Git submodules**
+- **Backend**: Go Echo framework with 2 library submodules
+- **Frontend**: React application with 2 library submodules
 - Best practices for managing dependencies with Go modules and Git submodules
+- Seamless integration between frontend and backend
 
 ## Project Structure
 
 ```
 .
-├── main.go                  # Main Echo application
-├── go.mod                   # Go module definition with submodule replacements
-├── go.sum                   # Go dependencies checksum
-├── .gitmodules              # Git submodules configuration
-├── libs/
-│   ├── greeting-lib/        # Git submodule: Greeting library
-│   │   ├── greeting.go      # Library implementation
-│   │   ├── go.mod           # Library module definition
-│   │   └── README.md        # Library documentation
-│   └── logger-lib/          # Git submodule: Logger library
-│       ├── logger.go        # Logger implementation
-│       ├── go.mod           # Library module definition
-│       └── README.md        # Library documentation
-└── README.md                # This file
+├── main.go                     # Main Echo application (Backend)
+├── go.mod                      # Go module definition
+├── libs/                       # Backend submodules
+│   ├── greeting-lib/           # Git submodule: Greeting library
+│   │   ├── greeting.go
+│   │   ├── go.mod
+│   │   └── README.md
+│   └── logger-lib/             # Git submodule: Logger library
+│       ├── logger.go
+│       ├── go.mod
+│       └── README.md
+├── frontend/                   # Frontend application
+│   ├── components-lib/         # Git submodule: React UI components
+│   │   ├── src/index.js
+│   │   ├── package.json
+│   │   └── README.md
+│   ├── utils-lib/              # Git submodule: Utility functions
+│   │   ├── src/index.js
+│   │   ├── package.json
+│   │   └── README.md
+│   ├── src/                    # Main React app
+│   │   ├── App.jsx
+│   │   ├── main.jsx
+│   │   └── index.css
+│   ├── package.json
+│   └── vite.config.js
+└── README.md                   # This file
 ```
 
 ## Features
 
-### Submodule Libraries
+### Backend Submodules (Go)
 
-This project demonstrates **two Git submodules**:
+This project demonstrates **two backend Git submodules**:
 
 #### 1. Greeting Library (`libs/greeting-lib`)
 A standalone Go module that provides:
@@ -50,24 +64,55 @@ A standalone logging module that provides:
 - Customizable prefix for different components
 - Lightweight and simple to use
 
-### Echo REST API
-The main application provides the following endpoints:
+### Frontend Submodules (React)
 
-- `GET /` - Welcome message with both submodules' info
+This project demonstrates **two frontend Git submodules**:
+
+#### 3. Components Library (`frontend/components-lib`)
+A reusable React UI components library with:
+- Button (4 variants)
+- Card (with header/footer)
+- Alert (4 types)
+- Input (with validation)
+- Spinner (3 sizes)
+
+#### 4. Utils Library (`frontend/utils-lib`)
+A comprehensive utility functions library with:
+- Date formatting (formatDate, getTimeAgo)
+- String utilities (capitalize, truncate, slugify)
+- Validation (isEmail, isURL, isPhoneNumber)
+- Number formatting (formatCurrency, formatNumber)
+- Array utilities (groupBy, sortBy, unique, chunk)
+- Storage wrapper, debounce, throttle, and more
+
+### Backend API (Echo Framework)
+The Go backend provides the following endpoints:
+
+- `GET /` - Welcome message with both backend submodules' info
 - `GET /greet?name=John` - Get a personalized greeting
 - `GET /greet/time-based?name=John` - Get a time-based greeting
 - `GET /health` - Health check endpoint showing both submodules loaded
+
+### Frontend Application (React + Vite)
+The React frontend demonstrates:
+- Integration with both frontend submodules
+- Real-time communication with backend API
+- Component library usage
+- Utility functions usage
+- Responsive design
+- Modern development setup with Vite
 
 ## Setup and Installation
 
 ### Prerequisites
 - Go 1.24 or higher
+- Node.js 16+ and npm
 - Git
 
 ### Clone with Submodules
 
 ```bash
-# Clone the repository with submodules (RECOMMENDED)
+# Clone the repository with ALL submodules (RECOMMENDED)
 git clone --recurse-submodules https://github.com/bakdaaswandi5818/poc-git-sub-module.git
 
 # Or if you already cloned without submodules
@@ -80,30 +125,73 @@ git submodule update --init --recursive
 
 ### Install Dependencies
 
+**Backend:**
 ```bash
 # Install Go dependencies
 go mod download
 go mod tidy
 ```
 
-### Build the Application
-
+**Frontend:**
 ```bash
-# Build the server
-go build -o poc-server .
+# Install Node.js dependencies
+cd frontend
+npm install
+cd ..
 ```
 
-### Run the Application
+### Running the Full Stack Application
+
+**Option 1: Run Both Services (Recommended for Full Experience)**
+
+Terminal 1 - Backend:
+```bash
+# Build and run the Go server
+go build -o poc-server .
+./poc-server
+```
+
+Terminal 2 - Frontend:
+```bash
+# Start the React development server
+cd frontend
+npm run dev
+```
+
+- Backend API: `http://localhost:8080`
+- Frontend App: `http://localhost:3000`
+
+**Option 2: Backend Only**
 
 ```bash
-# Run the server
-./poc-server
-
-# Or run directly with Go
+# Run the backend server
 go run main.go
 ```
 
 The server will start on `http://localhost:8080`
+
+**Option 3: Frontend Only (with Backend Running)**
+
+```bash
+cd frontend
+npm run dev
+```
+
+The frontend will be available at `http://localhost:3000` and will proxy API requests to `http://localhost:8080`
+
+### Build for Production
+
+**Backend:**
+```bash
+go build -o poc-server .
+```
+
+**Frontend:**
+```bash
+cd frontend
+npm run build
+# Production files will be in frontend/dist/
+```
 
 ## API Usage Examples
 
